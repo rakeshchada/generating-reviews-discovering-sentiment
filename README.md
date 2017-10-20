@@ -21,3 +21,8 @@ Additionally there is a [PyTorch port](https://github.com/guillitte/pytorch-sent
 This repo also contains the parameters of the multiplicative LSTM model with 4,096 units we trained on the Amazon product review dataset introduced in McAuley et al. (2015) [1]. The dataset in de-duplicated form contains over 82 million product reviews from May 1996 to July 2014 amounting to over 38 billion training bytes. Training took one month across four NVIDIA Pascal GPUs, with our model processing 12,500 characters per second.
 
 [1] McAuley, Julian, Pandey, Rahul, and Leskovec, Jure. Inferring networks of substitutable and complementary products. In *Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, pp. 785–794. ACM, 2015.
+
+# Sentiment Neuron on Yelp Review Classification
+This is a fork of https://github.com/openai/generating-reviews-discovering-sentiment. I added visualizations on top of that codebase and also included code from some of the generation pull requests in the original repository.
+
+Note: This repo works with python2 only.
