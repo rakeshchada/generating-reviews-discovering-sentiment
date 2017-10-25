@@ -59,9 +59,13 @@ def status_update_with_media(status_text):
     auth.set_access_token(
         bc.provide_key("access_token"), bc.provide_key("access_token_secret"))
     api = tweepy.API(auth)
+    if len(status_text) > 139:
+        tweet_text_limit = status_text[:135] + "..."
+    else:
+        tweet_text_limit = status_text
     try:
         media_id = api.media_upload("all-plots.png")
-        api.update_status(status=status_text, media_ids=[media_id.media_id])
+        api.update_status(status=tweet_text_limit, media_ids=[media_id.media_id])
     except Exception as e:
         print("Oops", e)
 
