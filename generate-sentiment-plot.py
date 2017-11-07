@@ -7,8 +7,6 @@ import seaborn as sns
 sns.set_style("darkgrid")
 plt.style.use('ggplot')
 
-__all__ = ["get_tracked_neuron_values_for_a_review"]
-
 def get_tracked_neuron_values_for_a_review(model, review_text):
     feats, tracked_indices_values = model.transform(
         [review_text], track_indices=[2388])
@@ -30,7 +28,8 @@ def plot_neuron_heatmap(text, values):
             end_index = num_chars
         else:
             end_index = i+n_limit
-    fig, all_subplots = plt.subplots(nrows=count, sharex=True, figsize=(20, 2*count))
+    print "this is count", count
+    fig, all_subplots = plt.subplots(nrows=count+1, figsize=(20, 2*count))
     print all_subplots, len(all_subplots)
     axis_count = 0
     for i in np.arange(0, len(values), n_limit):
@@ -78,11 +77,11 @@ if __name__ == "__main__":
         #     0.29023501, 0.29023501, 0.29023501, 0.29023501, 0.29023501, 0.29023501,
         #     0.29023501, 0.29023501])
 
-        # plot_neuron_heatmap(input_text, values)
+        print type(values), len(values)
         print "Plotted"
-        plot_neuron_heatmap(input_text, values)
         y_n = prompt(u"Would you like to plot the heatmap? ")
-        # if y_n[0].lower() == "y":
-        # else:
-        #     print "Not plotting"
+        if y_n[0].lower() == "y":
+            plot_neuron_heatmap(input_text, values)
+        else:
+            print "Not plotting"
 

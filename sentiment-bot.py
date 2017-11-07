@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from __future__ import print_function
 import tweepy
 import bot_credentials as bc
@@ -8,8 +10,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style("darkgrid")
 plt.style.use('ggplot')
-
-__all__ = ["get_tracked_neuron_values_for_a_review"]
 
 def get_tracked_neuron_values_for_a_review(model, review_text):
     feats, tracked_indices_values = model.transform(
