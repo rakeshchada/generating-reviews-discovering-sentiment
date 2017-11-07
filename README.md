@@ -25,4 +25,4 @@ This repo also contains the parameters of the multiplicative LSTM model with 4,0
 # Sentiment Neuron on Yelp Review Classification
 This is a fork of https://github.com/openai/generating-reviews-discovering-sentiment. I added visualizations on top of that codebase and also included code from some of the generation pull requests in the original repository.
 
-Note: This repo works with python2 only.
+Note: Code runs in Python2.
