@@ -167,7 +167,7 @@ class Model(object):
         params = [np.load('model/%d.npy'%i) for i in range(15)]
         params[2] = np.concatenate(params[2:6], axis=1)
         params[3:6] = []
-        
+
         #print("n steps is", hps.nsteps);
 
         X = tf.placeholder(tf.int32, [None, hps.nsteps])
@@ -219,7 +219,7 @@ class Model(object):
                     end = batch+nbatch
                     #print "scanning from", start, "to", end
                     #print "xmb - ", xmb[start:end], xmb.shape
-                    
+
                     batch_smb = seq_rep(
                         xmb[start:end], mmb[start:end],
                         smb[:, offset+start:offset+end, :])
@@ -238,10 +238,10 @@ class Model(object):
                         for i, index in enumerate(track_indices):
                             #print "sentiment neuron values -- ", batch_cells[:,0,index]
                             track_indices_values[i].append(batch_cells[:,0,index])
-                            
+
             #print "rounded_steps after", rounded_steps
             #print "maxlen after", maxlen
-                
+
             if rounded_steps < maxlen:
                 start = rounded_steps
                 end = maxlen
@@ -310,22 +310,22 @@ class Model(object):
 
         self.transform = transform
         self.cell_transform = cell_transform
-        
+
         def generate_sequence(x_start, override={}, sampling = 0, len_add = '.'):
-            """Continue a given sequence. 
+            """Continue a given sequence.
             Args:
                 x_start (string): The string to be continued.
                 override (dict): Values of the hidden state to override
-                  with keys of the dictionary as index.          
-                sampling (int): 0 greedy argmax, 2 weighted random from probabilty 
+                  with keys of the dictionary as index.
+                sampling (int): 0 greedy argmax, 2 weighted random from probabilty
                   distribution, 1 weighted but only once after each word.
-                len_add (int, string, None): 
+                len_add (int, string, None):
                   If int, the number of characters to be added.
                   If string, returns after each contained character was seen once.
             Returns:
                 The completed string including transformation and paddings from preprocessing.
             """
-            
+
             len_start = len(x_start)
             x_preprocessed = preprocess(x_start)
             x = bytearray(x_preprocessed)
@@ -344,7 +344,7 @@ class Model(object):
 
                 #Override salient neurons
                 for neuron, value in override.items():
-                    smb[:, :, neuron] = value        
+                    smb[:, :, neuron] = value
 
                 if ndone <= len_start:
                     #Prime hidden state with full steps
@@ -367,10 +367,10 @@ class Model(object):
                     len_add = len_add.replace(last_chr, "", 1)
                     if len(len_add) == 0:
                         break
-            
-            return(x.decode()) 
-        
-        
+
+            return(x.decode())
+
+
         self.transform = transform
         self.cell_transform = cell_transform
         self.generate_sequence = generate_sequence
